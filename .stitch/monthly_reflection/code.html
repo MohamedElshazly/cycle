@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monthly Reflection | Cycle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#53555c",
+                    "outline-variant": "#41485a",
+                    "surface-container": "#151924",
+                    "surface": "#0c0e14",
+                    "on-tertiary-container": "#584862",
+                    "surface-tint": "#e5bbd0",
+                    "on-tertiary-fixed-variant": "#62526c",
+                    "error-container": "#7f2737",
+                    "surface-container-low": "#10131b",
+                    "on-tertiary-fixed": "#45364f",
+                    "on-secondary-fixed-variant": "#615a5c",
+                    "error-dim": "#b95463",
+                    "on-surface": "#dfe5fc",
+                    "tertiary-fixed-dim": "#ddc7e7",
+                    "on-secondary": "#241f21",
+                    "primary-fixed": "#ffd8eb",
+                    "on-surface-variant": "#a5aac0",
+                    "surface-container-highest": "#1f2536",
+                    "surface-dim": "#0c0e14",
+                    "on-error": "#490013",
+                    "surface-container-high": "#1a1f2d",
+                    "background": "#0c0e14",
+                    "on-tertiary": "#61516b",
+                    "on-secondary-fixed": "#443e40",
+                    "primary": "#e5bbd0",
+                    "secondary": "#a49c9e",
+                    "primary-container": "#5c3d4f",
+                    "on-primary-fixed": "#543647",
+                    "on-primary-fixed-variant": "#735264",
+                    "on-primary-container": "#efc5da",
+                    "primary-fixed-dim": "#f3c9de",
+                    "tertiary-container": "#ebd5f5",
+                    "primary-dim": "#d6adc2",
+                    "secondary-fixed": "#eae0e3",
+                    "secondary-fixed-dim": "#dcd2d5",
+                    "inverse-primary": "#765568",
+                    "tertiary": "#f8e5ff",
+                    "on-primary": "#553748",
+                    "on-background": "#dfe5fc",
+                    "secondary-container": "#403a3c",
+                    "tertiary-fixed": "#ebd5f5",
+                    "inverse-surface": "#faf8ff",
+                    "tertiary-dim": "#ddc7e7",
+                    "surface-container-lowest": "#000000",
+                    "error": "#ec7c8a",
+                    "surface-bright": "#242c3f",
+                    "surface-variant": "#1f2536",
+                    "outline": "#6f7589",
+                    "on-secondary-container": "#c6bdc0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mauve-glow {
+            background: radial-gradient(circle at center, rgba(229, 187, 208, 0.08) 0%, rgba(12, 14, 20, 0) 70%);
+        }
+        .editor-line {
+            background-image: linear-gradient(to right, rgba(165, 170, 192, 0.1) 1px, transparent 1px);
+            background-size: 100% 2.4rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-primary/30">
+<!-- Top Navigation (Shell) -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-fuchsia-300" data-icon="notes">notes</span>
+<span class="text-xl font-bold tracking-tighter text-fuchsia-200">Cycle</span>
+</div>
+<div class="hidden md:flex gap-8 text-sm leading-relaxed tracking-tight font-semibold">
+<a class="text-slate-400 font-normal hover:text-fuchsia-200 transition-colors duration-300" href="#">Dashboard</a>
+<a class="text-slate-400 font-normal hover:text-fuchsia-200 transition-colors duration-300" href="#">Patterns</a>
+<a class="text-fuchsia-300 font-semibold transition-colors duration-300" href="#">Reflections</a>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-32 overflow-hidden">
+<!-- Subtle Mauve Glow -->
+<div class="absolute inset-0 mauve-glow pointer-events-none"></div>
+<!-- Reflection Container -->
+<div class="w-full max-w-[720px] relative z-10 flex flex-col gap-12">
+<!-- Context & Header -->
+<header class="flex flex-col gap-4 items-start">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high/50 border border-outline-variant/20">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(229,187,208,0.6)]"></span>
+<span class="text-[10px] font-semibold tracking-widest uppercase text-on-surface-variant">Monthly Reflection • April</span>
+</div>
+<h2 class="text-[28px] md:text-[32px] font-semibold tracking-tight text-on-surface leading-tight max-w-[580px]">
+                    What's one thing you now know about yourself that you didn't before?
+                </h2>
+</header>
+<!-- Editorial Text Area -->
+<section class="group relative">
+<div class="absolute -inset-x-4 -inset-y-4 bg-surface-container/30 rounded-2xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<textarea class="w-full min-h-[400px] bg-transparent border-none focus:ring-0 text-[18px] md:text-[20px] leading-[1.8] text-on-surface placeholder:text-on-surface-variant/30 resize-none font-body py-4 block" placeholder="Begin your thought here..."></textarea>
+<!-- Subtle Interaction Detail: The Pulse Indicator -->
+<div class="mt-8 flex items-center gap-6">
+<div class="h-[1px] flex-grow bg-gradient-to-r from-outline-variant/40 to-transparent"></div>
+<div class="flex items-center gap-3">
+<span class="text-[12px] font-medium text-on-surface-variant/60 uppercase tracking-[0.2em]">Flow State</span>
+<div class="w-3 h-3 rounded-full bg-primary/40 flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<footer class="flex items-center justify-between pt-4">
+<div class="flex gap-4">
+<button class="text-secondary font-medium text-sm hover:text-on-surface transition-colors px-4 py-2 rounded-lg">
+                        Discard
+                    </button>
+</div>
+<button class="px-10 py-4 bg-primary text-on-primary font-semibold rounded-xl text-sm tracking-wide shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+                    Save Reflection
+                </button>
+</footer>
+</div>
+</main>
+<!-- Bottom Navigation (Shell) -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-6 pb-4 bg-slate-950/80 backdrop-blur-2xl rounded-t-2xl z-50 shadow-2xl shadow-black/40 tonal layering bg-slate-900/60">
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-60 hover:opacity-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="grid_view">grid_view</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-60 hover:opacity-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="waves">waves</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Patterns</span>
+</a>
+<a class="flex flex-col items-center justify-center text-fuchsia-300 scale-110 active:tap-highlight-none transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_note" data-weight="fill" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Reflections</span>
+</a>
+</nav>
+</body></html>

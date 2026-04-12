@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patterns - Cycle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#53555c",
+                    "outline-variant": "#41485a",
+                    "surface-container": "#151924",
+                    "surface": "#0c0e14",
+                    "on-tertiary-container": "#584862",
+                    "surface-tint": "#e5bbd0",
+                    "on-tertiary-fixed-variant": "#62526c",
+                    "error-container": "#7f2737",
+                    "surface-container-low": "#10131b",
+                    "on-tertiary-fixed": "#45364f",
+                    "on-secondary-fixed-variant": "#615a5c",
+                    "error-dim": "#b95463",
+                    "on-surface": "#dfe5fc",
+                    "tertiary-fixed-dim": "#ddc7e7",
+                    "on-secondary": "#241f21",
+                    "primary-fixed": "#ffd8eb",
+                    "on-surface-variant": "#a5aac0",
+                    "surface-container-highest": "#1f2536",
+                    "surface-dim": "#0c0e14",
+                    "on-error": "#490013",
+                    "surface-container-high": "#1a1f2d",
+                    "background": "#0c0e14",
+                    "on-tertiary": "#61516b",
+                    "on-secondary-fixed": "#443e40",
+                    "primary": "#e5bbd0",
+                    "secondary": "#a49c9e",
+                    "primary-container": "#5c3d4f",
+                    "on-primary-fixed": "#543647",
+                    "on-primary-fixed-variant": "#735264",
+                    "on-primary-container": "#efc5da",
+                    "primary-fixed-dim": "#f3c9de",
+                    "tertiary-container": "#ebd5f5",
+                    "primary-dim": "#d6adc2",
+                    "secondary-fixed": "#eae0e3",
+                    "secondary-fixed-dim": "#dcd2d5",
+                    "inverse-primary": "#765568",
+                    "tertiary": "#f8e5ff",
+                    "on-primary": "#553748",
+                    "on-background": "#dfe5fc",
+                    "secondary-container": "#403a3c",
+                    "tertiary-fixed": "#ebd5f5",
+                    "inverse-surface": "#faf8ff",
+                    "tertiary-dim": "#ddc7e7",
+                    "surface-container-lowest": "#000000",
+                    "error": "#ec7c8a",
+                    "surface-bright": "#242c3f",
+                    "surface-variant": "#1f2536",
+                    "outline": "#6f7589",
+                    "on-secondary-container": "#c6bdc0"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-fuchsia-300">notes</span>
+<h1 class="text-xl font-bold tracking-tighter text-fuchsia-200">Cycle</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-slate-400 font-normal hover:text-fuchsia-200 transition-colors duration-300 font-plus-jakarta text-sm leading-relaxed tracking-tight" href="#">Dashboard</a>
+<a class="text-fuchsia-300 font-semibold hover:text-fuchsia-200 transition-colors duration-300 font-plus-jakarta text-sm leading-relaxed tracking-tight" href="#">Patterns</a>
+<a class="text-slate-400 font-normal hover:text-fuchsia-200 transition-colors duration-300 font-plus-jakarta text-sm leading-relaxed tracking-tight" href="#">Reflections</a>
+</nav>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-32 px-6 max-w-[720px] mx-auto min-h-screen">
+<!-- Header Section -->
+<header class="mb-12">
+<h1 class="text-[28px] font-semibold tracking-[-0.02em] text-on-surface mb-2">Patterns</h1>
+<p class="text-on-surface-variant/60 text-[15px] leading-[1.6]">A subtle observation of your recurring rhythms and behavioral cycles.</p>
+</header>
+<!-- Insight Card (The Unlocked State) -->
+<section class="mb-16">
+<div class="relative overflow-hidden rounded-xl bg-surface-container p-8 shadow-2xl shadow-black/20 group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-[12px] font-medium tracking-widest uppercase text-primary/80">Active Insight</span>
+</div>
+<h2 class="text-xl font-semibold text-on-surface mb-4">You tend to thrive when...</h2>
+<p class="text-on-surface-variant text-[15px] leading-[1.6]">
+                        Your deep focus blocks align with early morning stillness. We've noticed a 40% increase in cycle completion when tasks are initiated before 08:00 AM.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Cycle History List -->
+<section class="space-y-12">
+<h3 class="text-[12px] font-medium tracking-widest uppercase text-on-surface-variant/40 mb-6">Cycle History</h3>
+<div class="space-y-10">
+<!-- Item 1: Graduated -->
+<div class="flex items-start justify-between group">
+<div class="space-y-1">
+<h4 class="text-lg font-medium text-on-surface group-hover:text-primary transition-colors duration-300">Morning Deep Work</h4>
+<p class="text-[12px] text-on-surface-variant/60">21 days • Oct 12 - Nov 02</p>
+</div>
+<div class="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[11px] font-semibold tracking-wide text-primary uppercase">Graduated</span>
+</div>
+</div>
+<!-- Item 2: Paused -->
+<div class="flex items-start justify-between group">
+<div class="space-y-1">
+<h4 class="text-lg font-medium text-on-surface group-hover:text-secondary transition-colors duration-300">Creative Flow Sprint</h4>
+<p class="text-[12px] text-on-surface-variant/60">14 days • Sept 20 - Oct 04</p>
+</div>
+<div class="flex items-center gap-2 bg-secondary/5 px-3 py-1.5 rounded-full">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[11px] font-semibold tracking-wide text-secondary uppercase">Paused</span>
+</div>
+</div>
+<!-- Item 3: Neutral -->
+<div class="flex items-start justify-between group">
+<div class="space-y-1">
+<h4 class="text-lg font-medium text-on-surface group-hover:text-on-surface-variant transition-colors duration-300">Evening Wind-down</h4>
+<p class="text-[12px] text-on-surface-variant/60">7 days • Sept 10 - Sept 17</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full">
+<span class="text-[11px] font-semibold tracking-wide text-on-surface-variant uppercase">Closed</span>
+</div>
+</div>
+<!-- Item 4: Graduated -->
+<div class="flex items-start justify-between group">
+<div class="space-y-1">
+<h4 class="text-lg font-medium text-on-surface group-hover:text-primary transition-colors duration-300">Physical Vitality</h4>
+<p class="text-[12px] text-on-surface-variant/60">30 days • Aug 01 - Aug 31</p>
+</div>
+<div class="flex items-center gap-2 bg-primary/5 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[11px] font-semibold tracking-wide text-primary uppercase">Graduated</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Decorative Stillness Element -->
+<section class="mt-24 flex flex-col items-center opacity-20">
+<div class="w-1 h-16 bg-gradient-to-b from-primary/50 to-transparent rounded-full mb-4"></div>
+<p class="text-[11px] font-medium tracking-[0.2em] uppercase text-on-surface-variant">End of History</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-6 pb-4 bg-slate-950/80 backdrop-blur-2xl z-50 rounded-t-2xl shadow-2xl shadow-black/40 md:hidden">
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-60 hover:opacity-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-fuchsia-300 scale-110 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">waves</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Patterns</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 opacity-60 hover:opacity-100 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1">edit_note</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase">Reflections</span>
+</a>
+</nav>
+<!-- Aesthetic Ambient Elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-[20%] -left-[10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[10%] -right-[10%] w-[30%] h-[30%] bg-on-tertiary-container/5 rounded-full blur-[100px]"></div>
+</div>
+</body></html>

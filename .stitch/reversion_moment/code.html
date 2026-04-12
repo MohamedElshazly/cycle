@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#53555c",
+                    "outline-variant": "#41485a",
+                    "surface-container": "#151924",
+                    "surface": "#0c0e14",
+                    "on-tertiary-container": "#584862",
+                    "surface-tint": "#e5bbd0",
+                    "on-tertiary-fixed-variant": "#62526c",
+                    "error-container": "#7f2737",
+                    "surface-container-low": "#10131b",
+                    "on-tertiary-fixed": "#45364f",
+                    "on-secondary-fixed-variant": "#615a5c",
+                    "error-dim": "#b95463",
+                    "on-surface": "#dfe5fc",
+                    "tertiary-fixed-dim": "#ddc7e7",
+                    "on-secondary": "#241f21",
+                    "primary-fixed": "#ffd8eb",
+                    "on-surface-variant": "#a5aac0",
+                    "surface-container-highest": "#1f2536",
+                    "surface-dim": "#0c0e14",
+                    "on-error": "#490013",
+                    "surface-container-high": "#1a1f2d",
+                    "background": "#0c0e14",
+                    "on-tertiary": "#61516b",
+                    "on-secondary-fixed": "#443e40",
+                    "primary": "#e5bbd0",
+                    "secondary": "#a49c9e",
+                    "primary-container": "#5c3d4f",
+                    "on-primary-fixed": "#543647",
+                    "on-primary-fixed-variant": "#735264",
+                    "on-primary-container": "#efc5da",
+                    "primary-fixed-dim": "#f3c9de",
+                    "tertiary-container": "#ebd5f5",
+                    "primary-dim": "#d6adc2",
+                    "secondary-fixed": "#eae0e3",
+                    "secondary-fixed-dim": "#dcd2d5",
+                    "inverse-primary": "#765568",
+                    "tertiary": "#f8e5ff",
+                    "on-primary": "#553748",
+                    "on-background": "#dfe5fc",
+                    "secondary-container": "#403a3c",
+                    "tertiary-fixed": "#ebd5f5",
+                    "inverse-surface": "#faf8ff",
+                    "tertiary-dim": "#ddc7e7",
+                    "surface-container-lowest": "#000000",
+                    "error": "#ec7c8a",
+                    "surface-bright": "#242c3f",
+                    "surface-variant": "#1f2536",
+                    "outline": "#6f7589",
+                    "on-secondary-container": "#c6bdc0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen">
+<!-- Background Content (Cycle View) -->
+<div class="fixed inset-0 z-0 overflow-hidden flex flex-col opacity-40">
+<!-- TopAppBar Placeholder for Context -->
+<header class="bg-slate-950/60 backdrop-blur-xl fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-8 py-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-fuchsia-300" data-icon="notes">notes</span>
+<span class="text-xl font-bold tracking-tighter text-fuchsia-200">Cycle</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<span class="text-fuchsia-300 font-semibold font-plus-jakarta text-sm leading-relaxed tracking-tight">Dashboard</span>
+<span class="text-slate-400 font-normal font-plus-jakarta text-sm leading-relaxed tracking-tight">Patterns</span>
+<span class="text-slate-400 font-normal font-plus-jakarta text-sm leading-relaxed tracking-tight">Reflections</span>
+</nav>
+</div>
+</header>
+<main class="mt-32 px-8 max-w-2xl mx-auto w-full">
+<div class="mb-12">
+<h1 class="text-3xl font-semibold tracking-tight text-on-surface mb-4">Current Cycle: Awareness</h1>
+<div class="h-1 w-24 bg-primary/20 rounded-full"></div>
+</div>
+<div class="space-y-12">
+<div class="bg-surface-container p-8 rounded-xl">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed">Your momentum has been steady for 12 days. Today's focus is on identifying early signals of tension.</p>
+</div>
+</div>
+</main>
+</div>
+<!-- Scrim / Backdrop Dimming -->
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"></div>
+<!-- Reversion Moment: Bottom Sheet -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-4 md:pb-8">
+<div class="bg-surface-container-high w-full max-w-lg rounded-t-[32px] rounded-b-2xl shadow-2xl shadow-black/80 overflow-hidden">
+<!-- Grab Handle -->
+<div class="w-full flex justify-center py-4">
+<div class="w-12 h-1 bg-surface-variant rounded-full opacity-50"></div>
+</div>
+<div class="px-8 pt-4 pb-12 max-w-md mx-auto">
+<!-- Header -->
+<div class="mb-10 text-left">
+<h2 class="text-2xl font-semibold tracking-tight text-on-surface mb-2">Things got harder.</h2>
+<p class="text-on-surface-variant text-sm font-medium opacity-60">A quiet space for this moment.</p>
+</div>
+<!-- One Question at a Time Flow -->
+<div class="space-y-12">
+<!-- Question 1: Feeling Selector -->
+<section class="space-y-6">
+<p class="text-on-surface text-lg leading-relaxed">How would you describe the shift?</p>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center p-4 rounded-xl bg-primary text-on-primary font-semibold transition-all duration-300">
+                                Sudden
+                            </button>
+<button class="flex items-center justify-center p-4 rounded-xl bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-300 border border-white/5">
+                                Gradual
+                            </button>
+<button class="flex items-center justify-center p-4 rounded-xl bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-300 border border-white/5">
+                                Heavy
+                            </button>
+<button class="flex items-center justify-center p-4 rounded-xl bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-all duration-300 border border-white/5">
+                                Foggy
+                            </button>
+</div>
+</section>
+<!-- Question 2: Simple Thought Input -->
+<section class="space-y-4">
+<p class="text-on-surface text-lg leading-relaxed">What triggered the weight?</p>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-3 text-on-surface placeholder:text-on-surface-variant/40 transition-colors duration-500" placeholder="A word or a sentence..." type="text"/>
+</div>
+</section>
+<!-- Outcome Options -->
+<section class="pt-8 border-t border-white/5 space-y-3">
+<div class="grid grid-cols-2 gap-3">
+<button class="w-full py-4 px-6 rounded-xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all duration-200">
+                                Keep going
+                            </button>
+<button class="w-full py-4 px-6 rounded-xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all duration-200">
+                                Pause
+                            </button>
+<button class="w-full py-4 px-6 rounded-xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all duration-200">
+                                Graduate
+                            </button>
+<button class="w-full py-4 px-6 rounded-xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all duration-200">
+                                Close
+                            </button>
+</div>
+<p class="text-center text-[11px] uppercase tracking-widest text-on-surface-variant/40 pt-4">Your cycle state will update based on this choice</p>
+</section>
+</div>
+</div>
+</div>
+</div>
+<!-- BottomNavBar (Suppressed for focused task, but kept as hidden for DOM integrity if needed for layout height) -->
+<div class="opacity-0 pointer-events-none">
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-6 pb-4 bg-slate-950/80 backdrop-blur-2xl z-50 rounded-t-2xl">
+<div class="flex flex-col items-center justify-center text-slate-500 opacity-60">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 opacity-60">
+<span class="material-symbols-outlined" data-icon="waves">waves</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase mt-1">Patterns</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 opacity-60">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-plus-jakarta text-[11px] font-medium tracking-wide uppercase mt-1">Reflections</span>
+</div>
+</nav>
+</div>
+</body></html>

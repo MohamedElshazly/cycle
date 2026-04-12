@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#53555c",
+                        "outline-variant": "#41485a",
+                        "surface-container": "#151924",
+                        "surface": "#0c0e14",
+                        "on-tertiary-container": "#584862",
+                        "surface-tint": "#e5bbd0",
+                        "on-tertiary-fixed-variant": "#62526c",
+                        "error-container": "#7f2737",
+                        "surface-container-low": "#10131b",
+                        "on-tertiary-fixed": "#45364f",
+                        "on-secondary-fixed-variant": "#615a5c",
+                        "error-dim": "#b95463",
+                        "on-surface": "#dfe5fc",
+                        "tertiary-fixed-dim": "#ddc7e7",
+                        "on-secondary": "#241f21",
+                        "primary-fixed": "#ffd8eb",
+                        "on-surface-variant": "#a5aac0",
+                        "surface-container-highest": "#1f2536",
+                        "surface-dim": "#0c0e14",
+                        "on-error": "#490013",
+                        "surface-container-high": "#1a1f2d",
+                        "background": "#0c0e14",
+                        "on-tertiary": "#61516b",
+                        "on-secondary-fixed": "#443e40",
+                        "primary": "#e5bbd0",
+                        "secondary": "#a49c9e",
+                        "primary-container": "#5c3d4f",
+                        "on-primary-fixed": "#543647",
+                        "on-primary-fixed-variant": "#735264",
+                        "on-primary-container": "#efc5da",
+                        "primary-fixed-dim": "#f3c9de",
+                        "tertiary-container": "#ebd5f5",
+                        "primary-dim": "#d6adc2",
+                        "secondary-fixed": "#eae0e3",
+                        "secondary-fixed-dim": "#dcd2d5",
+                        "inverse-primary": "#765568",
+                        "tertiary": "#f8e5ff",
+                        "on-primary": "#553748",
+                        "on-background": "#dfe5fc",
+                        "secondary-container": "#403a3c",
+                        "tertiary-fixed": "#ebd5f5",
+                        "inverse-surface": "#faf8ff",
+                        "tertiary-dim": "#ddc7e7",
+                        "surface-container-lowest": "#000000",
+                        "error": "#ec7c8a",
+                        "surface-bright": "#242c3f",
+                        "surface-variant": "#1f2536",
+                        "outline": "#6f7589",
+                        "on-secondary-container": "#c6bdc0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0c0e14;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .ghost-border {
+            border: 1px solid rgba(176, 138, 158, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface flex items-center justify-center min-h-screen selection:bg-primary/30">
+<!-- Progress Indicator - Minimal Top Alignment -->
+<div class="fixed top-12 left-0 w-full flex justify-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(229,187,208,0.6)]"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[720px] px-8 py-24 flex flex-col items-start">
+<!-- Subtle Ambient Glow Background Decorative Element -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<!-- Question Header -->
+<section class="mb-16 animate-fade-in">
+<span class="text-on-surface-variant text-[12px] font-medium tracking-[0.2em] uppercase mb-6 block opacity-60">Step 01</span>
+<h2 class="text-[32px] md:text-[40px] font-semibold leading-tight tracking-[-0.02em] text-on-surface">
+                How is your energy right now?
+            </h2>
+</section>
+<!-- Response Scale (Single Column Pilled Layout) -->
+<div class="w-full space-y-4">
+<!-- Alive (High Contrast Selection Example) -->
+<button class="w-full group relative flex items-center justify-between p-6 rounded-xl transition-all duration-300 bg-primary/10 border border-primary/40 editorial-shadow">
+<span class="text-[15px] font-medium text-primary tracking-wide">Alive</span>
+<span class="material-symbols-outlined text-primary text-xl">colors_spark</span>
+<div class="absolute inset-0 bg-primary/5 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+<!-- Good -->
+<button class="w-full group flex items-center justify-between p-6 rounded-xl transition-all duration-300 bg-surface-container hover:bg-surface-container-high ghost-border border-transparent">
+<span class="text-[15px] font-medium text-on-surface-variant group-hover:text-on-surface tracking-wide">Good</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:opacity-100 text-xl">light_mode</span>
+</button>
+<!-- Okay -->
+<button class="w-full group flex items-center justify-between p-6 rounded-xl transition-all duration-300 bg-surface-container hover:bg-surface-container-high ghost-border border-transparent">
+<span class="text-[15px] font-medium text-on-surface-variant group-hover:text-on-surface tracking-wide">Okay</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:opacity-100 text-xl">cloud</span>
+</button>
+<!-- Low -->
+<button class="w-full group flex items-center justify-between p-6 rounded-xl transition-all duration-300 bg-surface-container hover:bg-surface-container-high ghost-border border-transparent">
+<span class="text-[15px] font-medium text-on-surface-variant group-hover:text-on-surface tracking-wide">Low</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:opacity-100 text-xl">air</span>
+</button>
+<!-- Very Low -->
+<button class="w-full group flex items-center justify-between p-6 rounded-xl transition-all duration-300 bg-surface-container hover:bg-surface-container-high ghost-border border-transparent">
+<span class="text-[15px] font-medium text-on-surface-variant group-hover:text-on-surface tracking-wide">Very Low</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-40 group-hover:opacity-100 text-xl">bedtime</span>
+</button>
+</div>
+<!-- Pulse Indicator Footer (Contextual Signature Component) -->
+<div class="mt-24 w-full flex flex-col items-center justify-center opacity-40">
+<div class="w-2 h-2 rounded-full bg-primary/60 animate-pulse mb-4"></div>
+<p class="text-[12px] font-medium text-on-surface-variant tracking-[0.1em] uppercase">Just notice without judgment</p>
+</div>
+</main>
+<!-- Close/Exit Action -->
+<button class="fixed top-12 right-8 w-10 h-10 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">close</span>
+</button>
+<!-- Subtle Texture Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay overflow-hidden">
+<div class="w-full h-full" data-alt="fine grain texture overlay for a tactile paper feel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA915IQb3r5GkUpznh0ow6gKM_QyGVXErxJ1yJVoo18kvQdOmh_87d76xn7PLwetLFLj6k_CsQHCwKHM35pwogo-ZHIZ0N4wTqIn4H3BYL1X2cgInqULaBwVpm_8un6TJyaoEluRaLIxu4Ujyw-He1oDmvS_jVt_LjF2iLQzARJRZoSGiUQ9-wfaBTH9MkNgMd8eH4MI2UX1B1_SgPE-meAVKbhhOlYM5Iywr5EWeThs_PwJj1-dhZ9I90Ki0FKj4LbWViCwkXukng');"></div>
+</div>
+</body></html>
