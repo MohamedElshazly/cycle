@@ -12,6 +12,7 @@ const NAV_ITEMS: NavItem[] = [
 	{ label: 'Dashboard', href: '/dashboard' },
 	{ label: 'Patterns', href: '/patterns' },
 	{ label: 'Reflections', href: '/reflections' },
+	{ label: 'Settings', href: '/settings' },
 ]
 
 export function BottomNav() {
