@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth'
 import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { Skeleton } from '@/components/Skeleton'
 
 function LoginContent() {
 	const { signIn, isLoading } = useAuth()
@@ -41,7 +42,7 @@ function LoginContent() {
 				<button
 					onClick={handleGoogleSignIn}
 					disabled={isLoading}
-					className="w-full py-4 px-6 rounded-xl text-[15px] font-medium transition-all duration-150"
+					className="w-full py-4 px-6 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
 					style={{
 						background: 'var(--surface)',
 						color: 'var(--text-primary)',
@@ -76,9 +77,9 @@ export default function LoginPage() {
 		<Suspense fallback={
 			<div
 				className="min-h-screen flex items-center justify-center"
-				style={{ background: 'var(--background)', color: 'var(--text-primary)' }}
+				style={{ background: 'var(--background)' }}
 			>
-				<p>Loading...</p>
+				<Skeleton className="h-6 w-24" />
 			</div>
 		}>
 			<LoginContent />

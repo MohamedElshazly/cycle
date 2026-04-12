@@ -42,3 +42,13 @@ export async function getOnboardingStatus(userId: string) {
 
   return data.onboarding_completed ?? false
 }
+
+export async function completeOnboarding(userId: string) {
+  const supabase = createClient()
+  const { error } = await supabase
+    .from('users')
+    .update({ onboarding_completed: true })
+    .eq('id', userId)
+
+  if (error) throw error
+}

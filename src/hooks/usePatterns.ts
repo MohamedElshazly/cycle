@@ -62,7 +62,7 @@ export function usePatterns(userId: string | null): {
 } {
 	const {
 		data: patterns = null,
-		isLoading: loading,
+		isPending: loading,
 		error,
 	} = useQuery({
 		queryKey: ['patterns', userId],

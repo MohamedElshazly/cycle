@@ -13,7 +13,7 @@ export function useCycle(id: string | null) {
 
 	const {
 		data: cycle = null,
-		isLoading: loading,
+		isPending: loading,
 		error,
 		refetch,
 	} = useQuery({

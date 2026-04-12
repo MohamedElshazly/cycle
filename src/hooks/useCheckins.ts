@@ -7,7 +7,7 @@ export function useCheckins(cycleId: string | null) {
 
 	const {
 		data: checkins = [],
-		isLoading: loading,
+		isPending: loading,
 		error,
 		refetch,
 	} = useQuery({

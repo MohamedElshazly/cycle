@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '@/hooks/useAuth'
 import { useEmotionalSnapshot } from '@/hooks/useEmotionalSnapshot'
 import { useCycles } from '@/hooks/useCycles'
 import { WeatherScale } from '@/components/WeatherScale'
+import startCase from 'lodash/startCase'
 
 const WHY_NOW_OPTIONS = [
 	'fresh start',
@@ -28,7 +29,7 @@ type OnboardingForm = {
 
 export default function OnboardingPage() {
 	const router = useRouter()
-	const { userId } = useAuth()
+	const { userId, markOnboardingComplete } = useAuth()
 
 	const [step, setStep] = useState(1)
 
@@ -89,24 +90,20 @@ export default function OnboardingPage() {
 				whyNow: data.whyNow || undefined,
 				successVision: data.successVision.trim() || undefined,
 			})
+			await markOnboardingComplete(userId)
 			setStep(4)
 		} catch (err) {
 			console.error('Failed to create cycle:', err)
 		}
-	}, [userId, getValues, create])
+	}, [userId, getValues, create, markOnboardingComplete])
 
 	const handleWhyNowSelect = useCallback((option: string) => () => {
 		setValue('whyNow', option)
 	}, [setValue])
 
-	useEffect(() => {
-		if (step === 4) {
-			const timeout = setTimeout(() => {
-				router.push('/dashboard')
-			}, 1000)
-			return () => clearTimeout(timeout)
-		}
-	}, [step, router])
+	const handleGoToDashboard = useCallback(() => {
+		router.push('/dashboard')
+	}, [router])
 
 	const canContinueFromEmotional =
 		homeStress !== null && loneliness !== null && energy !== null && generalStress !== null
@@ -251,13 +248,13 @@ export default function OnboardingPage() {
 												key={option}
 												type="button"
 												onClick={handleWhyNowSelect(option)}
-												className="px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+												className="px-4 py-2 rounded-lg text-[14px] font-medium transition-all duration-150 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
 												style={{
 													backgroundColor: isSelected ? 'var(--surface-high)' : 'var(--surface)',
 													color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)',
 												}}
 											>
-												{option}
+												{startCase(option)}
 											</button>
 										)
 									})}
@@ -302,13 +299,20 @@ export default function OnboardingPage() {
 
 				{/* Step 4: Response */}
 				{step === 4 && (
-					<div className="flex flex-col items-center text-center">
+					<div className="flex flex-col items-center text-center gap-8">
 						<h2
 							className="text-[20px] font-semibold"
 							style={{ color: 'var(--text-primary)', letterSpacing: '-0.01em' }}
 						>
 							Got it. Let's see what happens.
 						</h2>
+						<button
+							onClick={handleGoToDashboard}
+							className="px-8 py-3 rounded-lg text-white font-medium transition-all duration-150 hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent"
+							style={{ backgroundColor: 'var(--accent)' }}
+						>
+							Go to Dashboard
+						</button>
 					</div>
 				)}
 			</div>

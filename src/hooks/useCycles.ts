@@ -6,7 +6,7 @@ export function useCycles(userId: string | null) {
 
 	const {
 		data: cycles = [],
-		isLoading: loading,
+		isPending: loading,
 		error,
 		refetch,
 	} = useQuery({

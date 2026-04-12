@@ -6,7 +6,7 @@ export function useReflections(userId: string | null) {
 
 	const {
 		data: reflections = [],
-		isLoading: loading,
+		isPending: loading,
 		error,
 		refetch,
 	} = useQuery({

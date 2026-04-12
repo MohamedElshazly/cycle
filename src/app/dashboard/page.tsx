@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useCycles } from '@/hooks/useCycles'
 import { CycleCard } from '@/components/CycleCard'
+import { DashboardSkeleton } from '@/components/DashboardSkeleton'
 import AppShell from '@/layouts/AppShell'
 
 export default function DashboardPage() {
@@ -34,14 +35,7 @@ export default function DashboardPage() {
 			</h2>
 
 			<div className="mt-8 flex flex-col gap-4">
-				{loading && (
-					<p
-						className="text-[15px]"
-						style={{ color: 'var(--text-secondary)' }}
-					>
-						...
-					</p>
-				)}
+				{loading && <DashboardSkeleton />}
 
 				{!loading && cycles.length === 0 && (
 					<p

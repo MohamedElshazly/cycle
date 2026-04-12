@@ -7,6 +7,7 @@ import { useCycle } from '@/hooks/useCycle'
 import { useCheckins } from '@/hooks/useCheckins'
 import AppShell from '@/layouts/AppShell'
 import { CycleStatusBadge } from '@/components/CycleStatusBadge'
+import { CycleDetailSkeleton } from '@/components/CycleDetailSkeleton'
 
 export default function CyclePage() {
 	const router = useRouter()
@@ -69,9 +70,7 @@ export default function CyclePage() {
 	if (cycleLoading || checkinsLoading) {
 		return (
 			<AppShell>
-				<div className="flex justify-center items-center min-h-[50vh]">
-					<p style={{ color: 'var(--text-secondary)' }}>...</p>
-				</div>
+				<CycleDetailSkeleton />
 			</AppShell>
 		)
 	}
@@ -184,7 +183,7 @@ export default function CyclePage() {
 							<div className="flex flex-col gap-3">
 								<button
 									onClick={handleCheckIn}
-									className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150"
+									className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 hover:bg-accent-hover"
 									style={{
 										background: 'var(--accent)',
 										color: 'var(--background)',
@@ -194,7 +193,7 @@ export default function CyclePage() {
 								</button>
 								<button
 									onClick={handleReversion}
-									className="text-[13px] transition-colors duration-150"
+									className="text-[13px] transition-colors duration-150 hover:text-text-primary"
 									style={{ color: 'var(--text-secondary)' }}
 								>
 									Things fell apart
@@ -223,7 +222,7 @@ export default function CyclePage() {
 						{cycle.status === 'paused' && (
 							<button
 								onClick={handleResume}
-								className="text-[15px] transition-colors duration-150"
+								className="text-[15px] transition-colors duration-150 hover:text-text-primary"
 								style={{ color: 'var(--text-secondary)' }}
 							>
 								Resume

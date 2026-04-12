@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { usePatterns } from '@/hooks/usePatterns'
 import AppShell from '@/layouts/AppShell'
 import { CycleStatusBadge } from '@/components/CycleStatusBadge'
+import { PatternsSkeleton } from '@/components/PatternsSkeleton'
 import type { ReversionFeeling } from '@/types/ReversionEvent'
 
 function buildInsightSentence(
@@ -54,9 +55,7 @@ export default function PatternsPage() {
 	if (loading) {
 		return (
 			<AppShell>
-				<div className="flex items-center justify-center min-h-[60vh]">
-					<p style={{ color: 'var(--text-secondary)' }}>Loading patterns...</p>
-				</div>
+				<PatternsSkeleton />
 			</AppShell>
 		)
 	}

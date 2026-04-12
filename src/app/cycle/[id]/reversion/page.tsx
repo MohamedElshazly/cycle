@@ -145,7 +145,7 @@ export default function ReversionPage() {
 							<div className="flex flex-col gap-4">
 								<button
 									onClick={() => handleUnravelingSelect('gradual')}
-									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150"
+									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
 									style={{
 										background: 'var(--surface-high)',
 										color: 'var(--text-primary)',
@@ -155,7 +155,7 @@ export default function ReversionPage() {
 								</button>
 								<button
 									onClick={() => handleUnravelingSelect('specific_moment')}
-									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150"
+									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
 									style={{
 										background: 'var(--surface-high)',
 										color: 'var(--text-primary)',
@@ -181,7 +181,7 @@ export default function ReversionPage() {
 									<button
 										key={option.value}
 										onClick={() => handleFeelingSelect(option.value)}
-										className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 border"
+										className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 border hover:opacity-80"
 										style={{
 											background:
 												feeling === option.value
@@ -218,7 +218,7 @@ export default function ReversionPage() {
 									<button
 										key={tag}
 										onClick={() => toggleTag(tag)}
-										className="px-4 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 border"
+										className="px-4 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 border hover:opacity-80"
 										style={{
 											background: contextTags.includes(tag)
 												? 'var(--accent-subtle)'
@@ -238,7 +238,7 @@ export default function ReversionPage() {
 
 							<button
 								onClick={handleContinue}
-								className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150"
+								className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 hover:bg-accent-hover"
 								style={{
 									background: 'var(--accent)',
 									color: 'var(--background)',
@@ -264,7 +264,7 @@ export default function ReversionPage() {
 										key={option.value}
 										onClick={() => handleOutcome(option.value)}
 										disabled={submitting}
-										className="w-full px-6 py-3 text-[15px] font-medium transition-colors duration-150"
+										className="w-full px-6 py-3 text-[15px] font-medium transition-colors duration-150 hover:text-text-primary"
 										style={{
 											color: 'var(--text-secondary)',
 											opacity: submitting ? 0.5 : 1,

@@ -140,7 +140,7 @@ export default function CheckinPage() {
 									<button
 										key={option.value}
 										onClick={() => handleDidTheThingSelect(option.value)}
-										className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150"
+										className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
 										style={{
 											background: 'var(--surface-high)',
 											color: 'var(--text-primary)',
@@ -189,7 +189,7 @@ export default function CheckinPage() {
 								<button
 									onClick={handleSave}
 									disabled={submitting}
-									className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150"
+									className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 hover:bg-accent-hover"
 									style={{
 										background: 'var(--accent)',
 										color: 'var(--background)',
@@ -201,7 +201,7 @@ export default function CheckinPage() {
 								<button
 									onClick={handleSkip}
 									disabled={submitting}
-									className="text-[13px] transition-colors duration-150"
+									className="text-[13px] transition-colors duration-150 hover:text-text-primary"
 									style={{
 										color: 'var(--text-secondary)',
 										opacity: submitting ? 0.5 : 1,

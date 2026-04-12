@@ -1,13 +1,15 @@
 'use client'
 
+import { Skeleton } from '@/components/Skeleton'
+
 export default function Home() {
 	// Proxy handles all routing logic
 	return (
 		<div
 			className="min-h-screen flex items-center justify-center"
-			style={{ background: 'var(--background)', color: 'var(--text-primary)' }}
+			style={{ background: 'var(--background)' }}
 		>
-			<p>Loading...</p>
+			<Skeleton className="h-6 w-24" />
 		</div>
 	)
 }

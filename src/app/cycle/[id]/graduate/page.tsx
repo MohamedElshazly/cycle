@@ -73,7 +73,7 @@ export default function GraduatePage() {
 							color: 'var(--text-secondary)',
 						}}
 					>
-						{cycle?.name || 'Loading...'}
+						{cycle?.name || ''}
 					</p>
 				</div>
 
@@ -114,7 +114,7 @@ export default function GraduatePage() {
 				<button
 					onClick={handleGraduate}
 					disabled={formState.isSubmitting}
-					className="px-6 py-2 text-[15px] font-normal hover:opacity-70 transition-opacity duration-150"
+					className="px-6 py-2 text-[15px] font-normal hover:opacity-80 transition-opacity duration-150"
 					style={{
 						color: 'var(--text-secondary)',
 					}}
