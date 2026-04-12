@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+/* ── Design System: The Breathing Page ──────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Mode */
+  --background: #F4F5F8;
+  --surface: #FFFFFF;
+  --surface-high: #ECEEF3;
+  --text-primary: #1A1F2E;
+  --text-secondary: #6B7280;
+  --border: #E2E4EC;
+  --accent: #B08A9E;
+  --accent-hover: #9A7389;
+  --accent-subtle: rgba(176, 138, 158, 0.08);
 }
+
+.dark {
+  --background: #0F1117;
+  --surface: #161B27;
+  --surface-high: #1E2535;
+  --text-primary: #E8EAF0;
+  --text-secondary: #8B91A8;
+  --border: #252D3D;
+  --accent: #B08A9E;
+  --accent-hover: #9A7389;
+  --accent-subtle: rgba(176, 138, 158, 0.08);
+}
+
+/* ── Tailwind v4 Theme Tokens ────────────────────────────────────────── */
 
 @theme inline {
+  --font-sans: var(--font-jakarta);
+
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-high: var(--surface-high);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base Styles ────────────────────────────────────────────────────── */
+
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography Scale ───────────────────────────────────────────────── */
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ── Transitions ────────────────────────────────────────────────────── */
+
+* {
+  transition-timing-function: ease;
+  transition-duration: 150ms;
+}
+
+/* ── Focus States ────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
