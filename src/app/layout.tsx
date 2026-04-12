@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { QueryProvider } from "@/components/QueryProvider";
+import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -14,15 +15,30 @@ export const metadata: Metadata = {
   description: "Understand why you keep stopping.",
 };
 
+const themeInitScript = `
+(function() {
+  try {
+    var t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.classList.toggle('dark', t === 'dark');
+    document.documentElement.style.colorScheme = t;
+  } catch(e) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} dark h-full`}>
+    <html lang="en" className={`${jakarta.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full">
-        <QueryProvider>{children}</QueryProvider>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

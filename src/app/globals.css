@@ -7,24 +7,30 @@
   --background: #F4F5F8;
   --surface: #FFFFFF;
   --surface-high: #ECEEF3;
+  --surface-highest: #E4E6EE;
   --text-primary: #1A1F2E;
   --text-secondary: #6B7280;
   --border: #E2E4EC;
-  --accent: #B08A9E;
-  --accent-hover: #9A7389;
-  --accent-subtle: rgba(176, 138, 158, 0.08);
+  --accent: #C4728E;
+  --accent-hover: #AD5E7A;
+  --accent-subtle: rgba(196, 114, 142, 0.10);
+  --accent-glow: rgba(196, 114, 142, 0.40);
+  --nav-glass: rgba(255, 255, 255, 0.88);
 }
 
 .dark {
-  --background: #0F1117;
-  --surface: #161B27;
-  --surface-high: #1E2535;
-  --text-primary: #E8EAF0;
-  --text-secondary: #8B91A8;
-  --border: #252D3D;
-  --accent: #B08A9E;
-  --accent-hover: #9A7389;
-  --accent-subtle: rgba(176, 138, 158, 0.08);
+  --background: #0C0E14;
+  --surface: #151924;
+  --surface-high: #1A1F2D;
+  --surface-highest: #1F2536;
+  --text-primary: #DFE5FC;
+  --text-secondary: #A5AAC0;
+  --border: #2A3247;
+  --accent: #C4728E;
+  --accent-hover: #AD5E7A;
+  --accent-subtle: rgba(196, 114, 142, 0.10);
+  --accent-glow: rgba(196, 114, 142, 0.50);
+  --nav-glass: rgba(12, 14, 20, 0.88);
 }
 
 /* ── Tailwind v4 Theme Tokens ────────────────────────────────────────── */
@@ -41,12 +47,18 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-subtle: var(--accent-subtle);
+  --color-surface-highest: var(--surface-highest);
+  --color-nav-glass: var(--nav-glass);
 }
 
 /* ── Base Styles ────────────────────────────────────────────────────── */
 
 html {
   color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
 }
 
 button {

@@ -10,6 +10,8 @@ type ReflectionForm = {
 	content: string
 }
 
+const MONTH = new Date().toLocaleDateString('en-US', { month: 'long' }).toUpperCase()
+
 export default function ReflectionsPage() {
 	const { userId } = useAuth()
 	const { reflections, loading, submit } = useReflections(userId)
@@ -34,9 +36,7 @@ export default function ReflectionsPage() {
 		[submit, reset]
 	)
 
-	const handleDiscard = useCallback(() => {
-		reset()
-	}, [reset])
+	const handleDiscard = useCallback(() => reset(), [reset])
 
 	const toggleExpand = useCallback((id: string) => {
 		setExpandedId((prev) => (prev === id ? null : id))
@@ -44,74 +44,141 @@ export default function ReflectionsPage() {
 
 	return (
 		<AppShell>
-			<div className="flex flex-col gap-12 py-8">
-				{/* Main Prompt Area with Accent Glow */}
-				<section className="relative flex flex-col items-center gap-8 py-16">
-					{/* Accent Glow Effect */}
+			{/* Mauve glow behind the entire page */}
+			<div
+				className="fixed inset-0 pointer-events-none -z-10"
+				style={{
+					background: 'radial-gradient(circle at 50% 40%, rgba(196, 114, 142, 0.06) 0%, transparent 65%)',
+				}}
+			/>
+
+			<div className="relative z-10 flex flex-col gap-16">
+				{/* Header with context pill */}
+				<header className="flex flex-col gap-4 items-start">
 					<div
-						className="absolute inset-0 pointer-events-none"
+						className="flex items-center gap-2 px-3 py-1 rounded-full"
 						style={{
-							background:
-								'radial-gradient(circle at center, rgba(176, 138, 158, 0.1) 0%, transparent 70%)',
+							background: 'rgba(165, 170, 192, 0.06)',
+							border: '1px solid rgba(165, 170, 192, 0.15)',
+						}}
+					>
+						<span
+							className="w-2 h-2 rounded-full"
+							style={{
+								background: 'var(--accent)',
+								boxShadow: '0 0 8px var(--accent-glow)',
+							}}
+						/>
+						<span
+							className="text-[10px] font-semibold tracking-widest uppercase"
+							style={{ color: 'var(--text-secondary)' }}
+						>
+							Monthly Reflection • {MONTH}
+						</span>
+					</div>
+					<h1
+						className="text-[28px] font-semibold tracking-[-0.02em] leading-tight max-w-xl"
+						style={{ color: 'var(--text-primary)' }}
+					>
+						What&apos;s one thing you now know about yourself that you didn&apos;t before?
+					</h1>
+				</header>
+
+				{/* Editorial textarea */}
+				<section className="group relative">
+					<div
+						className="absolute -inset-x-4 -inset-y-4 rounded-2xl transition-opacity duration-700 pointer-events-none opacity-0 group-focus-within:opacity-100"
+						style={{ background: 'rgba(22, 27, 39, 0.3)', filter: 'blur(24px)' }}
+					/>
+					<textarea
+						{...register('content')}
+						placeholder="Begin your thought here..."
+						className="w-full bg-transparent border-none focus:ring-0 focus:outline-none resize-none py-4 block"
+						style={{
+							fontSize: '18px',
+							lineHeight: 1.8,
+							color: 'var(--text-primary)',
+							minHeight: '400px',
 						}}
 					/>
 
-					<div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-150">
-						<h1 className="text-[28px] font-semibold tracking-[-0.02em] text-text-primary text-center leading-tight">
-							What's one thing you now know about yourself that you didn't
-							before?
-						</h1>
-
-						{/* Editorial Textarea */}
-						<textarea
-							{...register('content')}
-							placeholder="Take your time..."
-							className="w-full min-h-50 bg-transparent border-0 border-b border-border focus:border-accent focus:outline-none text-[15px] leading-[1.6] text-text-primary placeholder:text-text-secondary placeholder:italic resize-none transition-colors duration-150 px-0 py-4"
-							style={{ fontFamily: 'Plus Jakarta Sans' }}
+					{/* Flow state indicator */}
+					<div className="mt-8 flex items-center gap-6">
+						<div
+							className="h-px flex-grow"
+							style={{ background: 'linear-gradient(to right, rgba(165, 170, 192, 0.3), transparent)' }}
 						/>
-
-						{/* Actions */}
-						<div className="flex items-center justify-between w-full gap-4">
-							<button
-								onClick={handleDiscard}
-								type="button"
-								className="text-text-secondary text-[15px] font-normal hover:text-text-primary transition-colors duration-150"
+						<div className="flex items-center gap-3">
+							<span
+								className="text-[12px] font-medium uppercase tracking-[0.2em]"
+								style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
 							>
-								Discard
-							</button>
-
-							<button
-								onClick={handleSubmit(onSave)}
-								disabled={!content.trim()}
-								className="px-8 py-3 bg-accent hover:bg-accent-hover text-white text-[15px] font-semibold rounded-lg transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+								Flow State
+							</span>
+							<div
+								className="w-3 h-3 rounded-full flex items-center justify-center"
+								style={{ background: 'var(--accent-subtle)' }}
 							>
-								Save
-							</button>
-						</div>
-
-						{/* Saved Confirmation */}
-						{saved && (
-							<div className="text-accent text-[13px] font-medium">
-								Saved.
+								<div
+									className="w-1.5 h-1.5 rounded-full animate-pulse"
+									style={{ background: 'var(--accent)' }}
+								/>
 							</div>
-						)}
+						</div>
 					</div>
 				</section>
 
-				{/* Past Reflections Section */}
+				{/* Actions */}
+				<footer className="flex items-center justify-between">
+					<button
+						onClick={handleDiscard}
+						type="button"
+						className="text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150 hover:opacity-80"
+						style={{ color: 'var(--text-secondary)' }}
+					>
+						Discard
+					</button>
+
+					<div className="flex items-center gap-4">
+						{saved && (
+							<span
+								className="text-[13px] font-medium"
+								style={{ color: 'var(--accent)', opacity: 0.8 }}
+							>
+								Saved.
+							</span>
+						)}
+						<button
+							onClick={handleSubmit(onSave)}
+							disabled={!content.trim()}
+							className="px-10 py-4 font-semibold rounded-xl text-sm tracking-wide transition-all duration-200 hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
+							style={{
+								background: 'var(--accent)',
+								color: 'white',
+								boxShadow: '0 8px 24px var(--accent-glow)',
+							}}
+						>
+							Save Reflection
+						</button>
+					</div>
+				</footer>
+
+				{/* Past reflections */}
 				{!loading && reflections.length > 0 && (
-					<section className="flex flex-col gap-6">
-						<h2 className="text-[13px] font-medium uppercase tracking-[0.02em] text-text-secondary">
+					<section className="flex flex-col gap-6 pt-8" style={{ borderTop: '1px solid rgba(165, 170, 192, 0.08)' }}>
+						<h2
+							className="text-[12px] font-medium uppercase tracking-widest"
+							style={{ color: 'var(--text-secondary)', opacity: 0.4 }}
+						>
 							Previously
 						</h2>
 
-						<div className="flex flex-col gap-6">
+						<div className="flex flex-col gap-8">
 							{reflections.map((reflection) => {
 								const isExpanded = expandedId === reflection.id
 								const displayContent = isExpanded
 									? reflection.content
-									: reflection.content.slice(0, 100) +
-									(reflection.content.length > 100 ? '...' : '')
+									: reflection.content.slice(0, 120) + (reflection.content.length > 120 ? '...' : '')
 
 								return (
 									<button
@@ -119,17 +186,20 @@ export default function ReflectionsPage() {
 										onClick={() => toggleExpand(reflection.id)}
 										className="flex flex-col gap-2 text-left transition-opacity duration-150 hover:opacity-80"
 									>
-										<time className="text-[12px] text-text-secondary">
-											{new Date(reflection.created_at).toLocaleDateString(
-												'en-US',
-												{
-													month: 'long',
-													day: 'numeric',
-													year: 'numeric',
-												}
-											)}
+										<time
+											className="text-[12px]"
+											style={{ color: 'var(--text-secondary)', opacity: 0.5 }}
+										>
+											{new Date(reflection.created_at).toLocaleDateString('en-US', {
+												month: 'long',
+												day: 'numeric',
+												year: 'numeric',
+											})}
 										</time>
-										<p className="text-[15px] leading-[1.6] text-text-primary">
+										<p
+											className="text-[15px] leading-[1.6]"
+											style={{ color: 'var(--text-primary)' }}
+										>
 											{displayContent}
 										</p>
 									</button>

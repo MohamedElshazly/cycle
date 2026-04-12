@@ -19,6 +19,36 @@ type ReversionForm = {
 	contextTags: string[]
 }
 
+const UNRAVELING_OPTIONS: { label: string; value: ReversionUnraveling }[] = [
+	{ label: 'Sudden', value: 'specific_moment' },
+	{ label: 'Gradual', value: 'gradual' },
+]
+
+const FEELING_OPTIONS: { label: string; value: ReversionFeeling }[] = [
+	{ label: 'Relief', value: 'relief' },
+	{ label: 'Shame', value: 'shame' },
+	{ label: 'Numbness', value: 'numbness' },
+	{ label: 'Not sure', value: 'unknown' },
+]
+
+const OUTCOME_OPTIONS: { label: string; value: ReversionOutcome }[] = [
+	{ label: 'Keep going', value: 'resumed' },
+	{ label: 'Pause', value: 'paused' },
+	{ label: 'Graduate', value: 'graduated' },
+	{ label: 'Close', value: 'closed' },
+]
+
+const AVAILABLE_TAGS = [
+	'work pressure',
+	'relationship tension',
+	'low energy',
+	'boredom',
+	'illness',
+	'travel',
+	'big change',
+	'just forgot',
+]
+
 export default function ReversionPage() {
 	const router = useRouter()
 	const { id } = useParams<{ id: string }>()
@@ -27,255 +57,227 @@ export default function ReversionPage() {
 	const [step, setStep] = useState<Step>(1)
 
 	const { setValue, watch, getValues } = useForm<ReversionForm>({
-		defaultValues: {
-			unraveling: null,
-			feeling: null,
-			contextTags: [],
-		},
+		defaultValues: { unraveling: null, feeling: null, contextTags: [] },
 	})
 
 	const { submit, submitting } = useReversionEvent()
-
 	const feeling = watch('feeling')
 	const contextTags = watch('contextTags')
+	const unraveling = watch('unraveling')
 
 	const handleUnravelingSelect = useCallback((value: ReversionUnraveling) => {
 		setValue('unraveling', value)
-		setTimeout(() => setStep(2), 300)
+		setTimeout(() => setStep(2), 250)
 	}, [setValue])
 
 	const handleFeelingSelect = useCallback((value: ReversionFeeling) => {
 		setValue('feeling', value)
-		setTimeout(() => setStep(3), 300)
+		setTimeout(() => setStep(3), 250)
 	}, [setValue])
 
 	const toggleTag = useCallback((tag: string) => {
 		const current = getValues('contextTags')
-		const next = current.includes(tag)
-			? current.filter((t) => t !== tag)
-			: [...current, tag]
-		setValue('contextTags', next)
+		setValue('contextTags', current.includes(tag) ? current.filter(t => t !== tag) : [...current, tag])
 	}, [getValues, setValue])
 
-	const handleContinue = useCallback(() => {
-		setStep(4)
-	}, [])
-
-	const handleOutcome = useCallback(
-		async (outcome: ReversionOutcome) => {
-			if (!userId) return
-
-			const data = getValues()
-
-			try {
-				await submit({
-					cycleId: id,
-					userId,
-					declaredBy: 'user',
-					unraveling: data.unraveling ?? undefined,
-					feeling: data.feeling ?? undefined,
-					contextTags: data.contextTags.length > 0 ? data.contextTags : undefined,
-					outcome,
-				})
-				router.push(`/cycle/${id}`)
-			} catch (error) {
-				console.error('Failed to submit reversion event:', error)
-			}
-		},
-		[userId, id, getValues, submit, router]
-	)
-
-	const availableTags = [
-		'work pressure',
-		'relationship tension',
-		'low energy',
-		'boredom',
-		'illness',
-		'travel',
-		'big change',
-		'just forgot',
-	]
-
-	const feelingOptions: { label: string; value: ReversionFeeling }[] = [
-		{ label: 'relief', value: 'relief' },
-		{ label: 'shame', value: 'shame' },
-		{ label: 'numb', value: 'numbness' },
-		{ label: 'not sure', value: 'unknown' },
-		{ label: 'something else', value: 'other' },
-	]
-
-	const outcomeOptions: { label: string; value: ReversionOutcome }[] = [
-		{ label: 'keep going', value: 'resumed' },
-		{ label: 'take a break', value: 'paused' },
-		{ label: 'call it graduated', value: 'graduated' },
-		{ label: 'close this one', value: 'closed' },
-	]
+	const handleOutcome = useCallback(async (outcome: ReversionOutcome) => {
+		if (!userId) return
+		const data = getValues()
+		try {
+			await submit({
+				cycleId: id,
+				userId,
+				declaredBy: 'user',
+				unraveling: data.unraveling ?? undefined,
+				feeling: data.feeling ?? undefined,
+				contextTags: data.contextTags.length > 0 ? data.contextTags : undefined,
+				outcome,
+			})
+			router.push(`/cycle/${id}`)
+		} catch (error) {
+			console.error('Failed to submit reversion event:', error)
+		}
+	}, [userId, id, getValues, submit, router])
 
 	return (
 		<div
-			className="min-h-screen flex flex-col"
+			className="min-h-screen relative"
 			style={{ background: 'var(--background)', color: 'var(--text-primary)' }}
 		>
-			{/* Progress Dots */}
-			<div className="flex justify-center items-center gap-2 pt-8 pb-12">
-				{[1, 2, 3, 4].map((dotStep) => (
-					<div
-						key={dotStep}
-						className="w-2 h-2 rounded-full transition-all duration-150"
-						style={{
-							background:
-								step === dotStep ? 'var(--accent)' : 'var(--text-secondary)',
-							opacity: step === dotStep ? 1 : 0.3,
-						}}
-					/>
-				))}
-			</div>
+			{/* Scrim */}
+			<div className="fixed inset-0 z-40" style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }} />
 
-			<div className="flex-1 flex items-center justify-center px-6">
-				<div className="w-full max-w-120">
-					{step === 1 && (
-						<div className="flex flex-col gap-8">
+			{/* Bottom sheet */}
+			<div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-4 md:pb-8">
+				<div
+					className="w-full max-w-lg overflow-hidden"
+					style={{
+						background: 'var(--surface-high)',
+						borderRadius: '32px 32px 16px 16px',
+						boxShadow: '0 -20px 80px rgba(0,0,0,0.8)',
+					}}
+				>
+					{/* Grab handle */}
+					<div className="w-full flex justify-center py-4">
+						<div
+							className="w-12 h-1 rounded-full"
+							style={{ background: 'var(--surface-highest)', opacity: 0.5 }}
+						/>
+					</div>
+
+					<div className="px-8 pt-4 pb-12 max-w-md mx-auto">
+						{/* Header */}
+						<div className="mb-10">
 							<h2
-								className="text-[20px] font-semibold tracking-[-0.01em] text-center"
+								className="text-2xl font-semibold tracking-tight mb-2"
 								style={{ color: 'var(--text-primary)' }}
 							>
-								How did things come apart?
+								Things got harder.
 							</h2>
+							<p
+								className="text-sm font-medium"
+								style={{ color: 'var(--text-secondary)', opacity: 0.6 }}
+							>
+								A quiet space for this moment.
+							</p>
+						</div>
 
-							<div className="flex flex-col gap-4">
-								<button
-									onClick={() => handleUnravelingSelect('gradual')}
-									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
-									style={{
-										background: 'var(--surface-high)',
-										color: 'var(--text-primary)',
-									}}
+						<div className="space-y-12">
+							{/* Step 1 — How did it come apart? */}
+							{step >= 1 && (
+								<section className="space-y-6">
+									<p
+										className="text-lg leading-relaxed"
+										style={{ color: 'var(--text-primary)' }}
+									>
+										How would you describe the shift?
+									</p>
+									<div className="grid grid-cols-2 gap-3">
+										{UNRAVELING_OPTIONS.map(({ label, value }) => {
+											const isSelected = unraveling === value
+											return (
+												<button
+													key={value}
+													onClick={() => handleUnravelingSelect(value)}
+													className="flex items-center justify-center p-4 rounded-xl font-semibold transition-all duration-200"
+													style={{
+														background: isSelected ? 'var(--accent)' : 'var(--surface-highest)',
+														color: isSelected ? 'white' : 'var(--text-secondary)',
+														border: '1px solid rgba(255,255,255,0.04)',
+													}}
+												>
+													{label}
+												</button>
+											)
+										})}
+									</div>
+								</section>
+							)}
+
+							{/* Step 2 — How does it feel? */}
+							{step >= 2 && (
+								<section className="space-y-6">
+									<p
+										className="text-lg leading-relaxed"
+										style={{ color: 'var(--text-primary)' }}
+									>
+										What does it feel like?
+									</p>
+									<div className="grid grid-cols-2 gap-3">
+										{FEELING_OPTIONS.map(({ label, value }) => {
+											const isSelected = feeling === value
+											return (
+												<button
+													key={value}
+													onClick={() => handleFeelingSelect(value)}
+													className="flex items-center justify-center p-4 rounded-xl font-semibold transition-all duration-200"
+													style={{
+														background: isSelected ? 'var(--accent)' : 'var(--surface-highest)',
+														color: isSelected ? 'white' : 'var(--text-secondary)',
+														border: '1px solid rgba(255,255,255,0.04)',
+													}}
+												>
+													{label}
+												</button>
+											)
+										})}
+									</div>
+								</section>
+							)}
+
+							{/* Step 3 — Context tags + free text */}
+							{step >= 3 && (
+								<section className="space-y-6">
+									<p
+										className="text-lg leading-relaxed"
+										style={{ color: 'var(--text-primary)' }}
+									>
+										What triggered the weight?
+									</p>
+
+									<div className="flex flex-wrap gap-2">
+										{AVAILABLE_TAGS.map((tag) => {
+											const isSelected = contextTags.includes(tag)
+											return (
+												<button
+													key={tag}
+													onClick={() => toggleTag(tag)}
+													className="px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all duration-150"
+													style={{
+														background: isSelected ? 'var(--accent-subtle)' : 'var(--surface-highest)',
+														color: isSelected ? 'var(--accent)' : 'var(--text-secondary)',
+														border: `1px solid ${isSelected ? 'var(--accent)' : 'transparent'}`,
+													}}
+												>
+													{tag}
+												</button>
+											)
+										})}
+									</div>
+
+									<button
+										onClick={() => setStep(4)}
+										className="w-full py-3 rounded-xl font-medium text-[15px] transition-all duration-150"
+										style={{ background: 'var(--accent)', color: 'white' }}
+									>
+										Continue
+									</button>
+								</section>
+							)}
+
+							{/* Step 4 — Outcome */}
+							{step >= 4 && (
+								<section
+									className="pt-8 space-y-3"
+									style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
 								>
-									gradually, over time
-								</button>
-								<button
-									onClick={() => handleUnravelingSelect('specific_moment')}
-									className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 hover:opacity-80"
-									style={{
-										background: 'var(--surface-high)',
-										color: 'var(--text-primary)',
-									}}
-								>
-									there was a specific moment
-								</button>
-							</div>
-						</div>
-					)}
-
-					{step === 2 && (
-						<div className="flex flex-col gap-8">
-							<h2
-								className="text-[20px] font-semibold tracking-[-0.01em] text-center"
-								style={{ color: 'var(--text-primary)' }}
-							>
-								What does it feel like?
-							</h2>
-
-							<div className="flex flex-col gap-4">
-								{feelingOptions.map((option) => (
-									<button
-										key={option.value}
-										onClick={() => handleFeelingSelect(option.value)}
-										className="w-full px-6 py-4 rounded-xl text-[15px] font-medium transition-all duration-150 border hover:opacity-80"
-										style={{
-											background:
-												feeling === option.value
-													? 'var(--accent-subtle)'
-													: 'var(--surface-high)',
-											borderColor:
-												feeling === option.value
-													? 'var(--accent)'
-													: 'transparent',
-											color:
-												feeling === option.value
-													? 'var(--accent)'
-													: 'var(--text-primary)',
-										}}
+									<div className="grid grid-cols-2 gap-3">
+										{OUTCOME_OPTIONS.map(({ label, value }) => (
+											<button
+												key={value}
+												onClick={() => handleOutcome(value)}
+												disabled={submitting}
+												className="w-full py-4 px-6 rounded-xl font-semibold transition-all duration-200 hover:brightness-110 disabled:opacity-40"
+												style={{
+													background: 'var(--surface-highest)',
+													color: 'var(--text-primary)',
+													border: '1px solid rgba(255,255,255,0.04)',
+												}}
+											>
+												{label}
+											</button>
+										))}
+									</div>
+									<p
+										className="text-center text-[11px] uppercase tracking-widest pt-4"
+										style={{ color: 'var(--text-secondary)', opacity: 0.4 }}
 									>
-										{option.label}
-									</button>
-								))}
-							</div>
+										Your cycle state will update based on this choice
+									</p>
+								</section>
+							)}
 						</div>
-					)}
-
-					{step === 3 && (
-						<div className="flex flex-col gap-8">
-							<h2
-								className="text-[20px] font-semibold tracking-[-0.01em] text-center"
-								style={{ color: 'var(--text-primary)' }}
-							>
-								What was happening?
-							</h2>
-
-							<div className="flex flex-wrap gap-2">
-								{availableTags.map((tag) => (
-									<button
-										key={tag}
-										onClick={() => toggleTag(tag)}
-										className="px-4 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 border hover:opacity-80"
-										style={{
-											background: contextTags.includes(tag)
-												? 'var(--accent-subtle)'
-												: 'var(--surface-high)',
-											borderColor: contextTags.includes(tag)
-												? 'var(--accent)'
-												: 'transparent',
-											color: contextTags.includes(tag)
-												? 'var(--accent)'
-												: 'var(--text-secondary)',
-										}}
-									>
-										{tag}
-									</button>
-								))}
-							</div>
-
-							<button
-								onClick={handleContinue}
-								className="w-full px-6 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 hover:bg-accent-hover"
-								style={{
-									background: 'var(--accent)',
-									color: 'var(--background)',
-								}}
-							>
-								Continue
-							</button>
-						</div>
-					)}
-
-					{step === 4 && (
-						<div className="flex flex-col gap-8">
-							<h2
-								className="text-[20px] font-semibold tracking-[-0.01em] text-center"
-								style={{ color: 'var(--text-primary)' }}
-							>
-								What do you want to do?
-							</h2>
-
-							<div className="flex flex-col gap-3">
-								{outcomeOptions.map((option) => (
-									<button
-										key={option.value}
-										onClick={() => handleOutcome(option.value)}
-										disabled={submitting}
-										className="w-full px-6 py-3 text-[15px] font-medium transition-colors duration-150 hover:text-text-primary"
-										style={{
-											color: 'var(--text-secondary)',
-											opacity: submitting ? 0.5 : 1,
-										}}
-									>
-										{option.label}
-									</button>
-								))}
-							</div>
-						</div>
-					)}
+					</div>
 				</div>
 			</div>
 		</div>
