@@ -139,7 +139,7 @@ export default function CheckinPage() {
 			{/* Close button */}
 			<button
 				onClick={() => router.push(`/cycle/${id}`)}
-				className="fixed top-8 right-8 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-150 z-10"
+				className="fixed top-8 right-8 checkin-close-btn w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-150 z-10"
 				style={{ background: 'var(--surface)', color: 'var(--text-secondary)' }}
 				aria-label="Close"
 			>

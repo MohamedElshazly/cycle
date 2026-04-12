@@ -1,5 +1,6 @@
 import { TopNav } from "@/components/TopNav";
 import { BottomNav } from "@/components/BottomNav";
+import { Sidebar } from "@/components/Sidebar";
 
 type AppShellProps = {
 	children: React.ReactNode;
@@ -7,7 +8,7 @@ type AppShellProps = {
 
 export default function AppShell({ children }: AppShellProps) {
 	return (
-		<div className="min-h-screen bg-background">
+		<div className="min-h-screen lg:pl-[220px] bg-background">
 			{/* Ambient glow blobs — dark mode only */}
 			<div className="dark:block hidden fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
 				<div
@@ -20,8 +21,9 @@ export default function AppShell({ children }: AppShellProps) {
 				/>
 			</div>
 
+			<Sidebar />
 			<TopNav />
-			<main className="mx-auto max-w-180 px-6 md:px-12 pt-8 md:pt-24 pb-24 md:pb-16">
+			<main className="w-full max-w-180 lg:max-w-[960px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-24 lg:pt-12 pb-24 md:pb-16 lg:pb-12">
 				{children}
 			</main>
 			<BottomNav />

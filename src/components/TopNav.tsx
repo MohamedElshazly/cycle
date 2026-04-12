@@ -22,7 +22,7 @@ export function TopNav() {
 
 	return (
 		<header
-			className="hidden md:flex fixed top-0 left-0 right-0 z-50 h-16"
+			className="hidden md:flex lg:hidden fixed top-0 left-0 right-0 z-50 h-16"
 			style={{
 				backgroundColor: 'rgba(12, 14, 20, 0.72)',
 				backdropFilter: 'blur(20px)',

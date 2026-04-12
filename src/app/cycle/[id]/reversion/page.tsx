@@ -108,9 +108,9 @@ export default function ReversionPage() {
 			<div className="fixed inset-0 z-40" style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }} />
 
 			{/* Bottom sheet */}
-			<div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 pb-4 md:pb-8">
+			<div className="fixed inset-0 z-50 flex items-end md:items-center justify-center px-4 pb-4 md:pb-0">
 				<div
-					className="w-full max-w-lg overflow-hidden"
+					className="w-full max-w-lg overflow-hidden reversion-card"
 					style={{
 						background: 'var(--surface-high)',
 						borderRadius: '32px 32px 16px 16px',
@@ -118,7 +118,7 @@ export default function ReversionPage() {
 					}}
 				>
 					{/* Grab handle */}
-					<div className="w-full flex justify-center py-4">
+					<div className="w-full flex justify-center py-4 md:hidden">
 						<div
 							className="w-12 h-1 rounded-full"
 							style={{ background: 'var(--surface-highest)', opacity: 0.5 }}
