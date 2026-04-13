@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
+import { startCase } from 'lodash'
 import { useReversionEvent } from '@/hooks/useReversionEvent'
 import {
 	ReversionUnraveling,
@@ -32,7 +33,6 @@ const FEELING_OPTIONS: { label: string; value: ReversionFeeling }[] = [
 const OUTCOME_OPTIONS: { label: string; value: ReversionOutcome }[] = [
 	{ label: 'Keep going', value: 'resumed' },
 	{ label: 'Pause', value: 'paused' },
-	{ label: 'Graduate', value: 'graduated' },
 	{ label: 'Close', value: 'closed' },
 ]
 
@@ -66,6 +66,10 @@ export function ReversionModal({ cycleId, userId, isOpen, onClose, onSuccess }: 
 	const feeling = watch('feeling')
 	const contextTags = watch('contextTags')
 	const unraveling = watch('unraveling')
+
+	const canContinue = useMemo(() => {
+		return unraveling !== null && feeling !== null
+	}, [unraveling, feeling])
 
 	const handleUnravelingSelect = useCallback((value: ReversionUnraveling) => {
 		setValue('unraveling', value)
@@ -269,7 +273,7 @@ export function ReversionModal({ cycleId, userId, isOpen, onClose, onSuccess }: 
 															border: `1px solid ${isSelected ? 'var(--accent)' : 'transparent'}`,
 														}}
 													>
-														{tag}
+														{startCase(tag)}
 													</button>
 												)
 											})}
@@ -277,7 +281,8 @@ export function ReversionModal({ cycleId, userId, isOpen, onClose, onSuccess }: 
 
 										<button
 											onClick={handleContinueToOutcomes}
-											className="w-full py-3 rounded-xl font-medium text-[15px] transition-all duration-150 hover:brightness-110"
+											disabled={!canContinue}
+											className="w-full py-3 rounded-xl font-medium text-[15px] transition-all duration-150 hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed"
 											style={{ background: 'var(--accent)', color: 'white' }}
 										>
 											Continue

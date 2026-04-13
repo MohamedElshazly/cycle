@@ -125,3 +125,12 @@ h3 {
     right: calc(50vw - 360px + 32px);
   }
 }
+
+/* ── Cycle Action Buttons ──────────────────────────────────── */
+.graduate-button:hover {
+  background: var(--accent-subtle);
+}
+
+.reversion-button:hover {
+  background: var(--surface);
+}
