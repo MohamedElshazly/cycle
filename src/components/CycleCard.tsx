@@ -33,7 +33,7 @@ export function CycleCard({ cycle }: Props) {
 					{/* Status indicator */}
 					{isActive && (
 						<span
-							className="w-2 h-2 rounded-full shrink-0"
+							className="w-2 h-2 rounded-full shrink-0 pulse-indicator"
 							style={{
 								backgroundColor: 'var(--accent)',
 								boxShadow: '0 0 8px var(--accent-glow)',

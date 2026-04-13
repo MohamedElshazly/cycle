@@ -366,7 +366,7 @@ export default function CyclePage() {
 				{cycle.status === 'active' && (
 					<div className="relative pl-12">
 						<div
-							className="absolute left-0 top-1.5 w-6 h-6 rounded-full flex items-center justify-center"
+							className="absolute left-0 top-1.5 w-6 h-6 rounded-full flex items-center justify-center pulse-indicator"
 							style={{
 								background: 'var(--surface)',
 								border: '2px solid var(--accent)',
@@ -483,6 +483,31 @@ export default function CyclePage() {
 
 				return null
 			})}			</section>
+
+			{/* Pulse Indicator */}
+			{cycle.status === 'active' && (
+				<section className="mt-20 flex flex-col items-center justify-center space-y-6">
+					<div className="relative w-32 h-32 flex items-center justify-center">
+						<div
+							className="absolute inset-0 rounded-full animate-pulse"
+							style={{ background: 'var(--accent-subtle)', filter: 'blur(24px)' }}
+						/>
+						<div
+							className="relative w-16 h-16 rounded-full"
+							style={{
+								background: 'var(--accent)',
+								boxShadow: '0 0 30px var(--accent-glow)',
+							}}
+						/>
+					</div>
+					<p
+						className="text-[12px] font-medium uppercase tracking-widest text-center"
+						style={{ color: 'var(--text-secondary)' }}
+					>
+						Cycle Resonance
+					</p>
+				</section>
+			)}
 
 
 
