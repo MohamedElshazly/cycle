@@ -1,12 +1,15 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { ChevronLeft, CheckCircle, Circle, MinusCircle, MoreHorizontal } from 'lucide-react'
 import { useCycle } from '@/hooks/useCycle'
 import { useCheckins } from '@/hooks/useCheckins'
+import { useAuth } from '@/hooks/useAuth'
 import AppShell from '@/layouts/AppShell'
 import { CycleDetailSkeleton } from '@/components/CycleDetailSkeleton'
+import { ReversionModal } from '@/components/ReversionModal'
+import { CheckinModal } from '@/components/CheckinModal'
 
 function FeelingBadge({ value }: { value: number }) {
 	const labels: Record<number, string> = {
@@ -48,13 +51,28 @@ function TimelineIcon({ didTheThing }: { didTheThing: string }) {
 export default function CyclePage() {
 	const router = useRouter()
 	const { id } = useParams<{ id: string }>()
+	const { userId } = useAuth()
 
-	const { cycle, loading: cycleLoading } = useCycle(id)
-	const { checkins, loading: checkinsLoading } = useCheckins(id)
+	const { cycle, loading: cycleLoading, refetch: refetchCycle } = useCycle(id)
+	const { checkins, loading: checkinsLoading, refetch: refetchCheckins } = useCheckins(id)
+	const [isReversionModalOpen, setIsReversionModalOpen] = useState(false)
+	const [isCheckinModalOpen, setIsCheckinModalOpen] = useState(false)
 
 	const handleBack = useCallback(() => router.push('/dashboard'), [router])
-	const handleCheckIn = useCallback(() => router.push(`/cycle/${id}/checkin`), [router, id])
-	const handleReversion = useCallback(() => router.push(`/cycle/${id}/reversion`), [router, id])
+	const handleCheckIn = useCallback(() => setIsCheckinModalOpen(true), [])
+	const handleReversion = useCallback(() => setIsReversionModalOpen(true), [])
+	const handleReversionClose = useCallback(() => setIsReversionModalOpen(false), [])
+	const handleReversionSuccess = useCallback(() => {
+		setIsReversionModalOpen(false)
+		refetchCycle()
+		refetchCheckins()
+	}, [refetchCycle, refetchCheckins])
+	const handleCheckinClose = useCallback(() => setIsCheckinModalOpen(false), [])
+	const handleCheckinSuccess = useCallback(() => {
+		setIsCheckinModalOpen(false)
+		refetchCycle()
+		refetchCheckins()
+	}, [refetchCycle, refetchCheckins])
 
 	if (cycleLoading || checkinsLoading) {
 		return (
@@ -291,6 +309,28 @@ export default function CyclePage() {
 						Resume
 					</button>
 				</section>
+			)}
+
+			{/* Reversion Modal */}
+			{userId && (
+				<ReversionModal
+					cycleId={id}
+					userId={userId}
+					isOpen={isReversionModalOpen}
+					onClose={handleReversionClose}
+					onSuccess={handleReversionSuccess}
+				/>
+			)}
+
+			{/* Check-in Modal */}
+			{userId && (
+				<CheckinModal
+					cycleId={id}
+					userId={userId}
+					isOpen={isCheckinModalOpen}
+					onClose={handleCheckinClose}
+					onSuccess={handleCheckinSuccess}
+				/>
 			)}
 		</AppShell>
 	)
